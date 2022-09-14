@@ -277,6 +277,13 @@ an indefinite number of possible rounds, similar to any regular fight.
 Because the optimal strategy avoids this fight, we expect this has no
 consequence on our conclusions.
 
+## Knowledge of the data
+
+There has been an informal attempt to solve the game for a certain setting.
+This was done, however, with an algorithm that is probably incorrect,
+as well as with too few runs.
+This research will fix or rewrite that algorithm.
+
 ## Acknowledgements
 
 RJCB was the main writer of the manuscript.
