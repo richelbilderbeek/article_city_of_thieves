@@ -243,6 +243,9 @@ without intermediate payoffs.
 The lack of intermediate payoffs may seems harsh, 
 but the game 'only' has around 400 chapters with 
 only a few (if any) choices per chapter.
+Learning is done per combination of initial player characteristics and type of potion.
+Learning is stopped after (1) 10 days of run-time 
+or (2) the algorithm has completed the game for 100k times.
 
 To answer H_0 and H_1, we measure the chance to win the game, when played
 optimally, for the different initial statistics and potion. 
