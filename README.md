@@ -239,6 +239,12 @@ in advance, a high `lambda` of 0.9 is picked.
 The initial state-action value, `Q_0` denote the payoff
 an agent expects for unexplored state-actions.
 To encourage exploration, a value of 1.0 (i.e. a certain win) is used.
+The final payoff of a trial is either 0.0 for dying 
+and 1.0 for completing the game, 
+without intermediate payoffs.
+The lack of intermediate payoffs may seems harsh, 
+but the game 'only' has around 400 chapters with 
+only a few (if any) choices per chapter.
 
 To answer H_0 and H_1, we measure the chance to win the game, when played
 optimally, for the different initial statistics and potion. 
