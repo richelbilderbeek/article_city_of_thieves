@@ -215,8 +215,6 @@ as is needed for Hypothesis 2.
 Measuring the expected success of the initial state and the best action, 
 the probablity of winning the game is quantified
 
-
-
 Symbol  |Description               |Value
 --------|--------------------------|---------------------------------
 `alpha` |Learning rate             | 0.5
