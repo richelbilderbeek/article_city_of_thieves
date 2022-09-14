@@ -201,7 +201,8 @@ may have, solving one more puzzle that has plagued humanity for decades.
 ## Methods
 
 To allow the game to be solved by a computer, it has been converted
-to a computer game. 
+to a computer game. To get an global overview of the complexity
+of the game, it has been converted into a directional graph.
 
 To conclude what the optimal strategy is,
 Q-learning (a type of reinforcement learning) is used,
