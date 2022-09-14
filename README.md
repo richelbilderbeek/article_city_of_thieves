@@ -193,7 +193,7 @@ may have, solving one more puzzle that has plagued humanity for decades.
 
  * H_0: the dice rolls at the start of the game do not influence the
    chance of winning the game, when the game is played optimally
- * H_1: the potion picked at the start of the game do not influence the
+ * H_1: the potion picked at the start of the game does not influence the
    chance of winning the game, when the game is played optimally
  * H_2: it does not matter which of the three streets is picked at the initial
    junction for the chance of winning the game, when the game is played optimally
@@ -205,10 +205,40 @@ to a computer game. To get an global overview of the complexity
 of the game, it has been converted into a directional graph.
 
 To conclude what the optimal strategy is,
-Q-learning (a type of reinforcement learning) is used,
-as this type of unsupervised learning assigns the value
-of each state numerically, allowing for comparison between,
-for example, good and mediocre states.
+an unsupervised reinforcement learning technique is used
+called Q-learning.
+This techique assigns a value to each state-action-combination,
+where one action can be predicted to lead to success
+and another as certain failure.
+This allows for comparison between good and mediocre states and actions,
+as is needed for Hypothesis 2.
+Measuring the expected success of the initial state and the best action, 
+the probablity of winning the game is quantified
+
+
+
+Symbol  |Description               |Value
+--------|--------------------------|---------------------------------
+`alpha` |Learning rate             | 0.5
+`lambda`|Discount factor           | 0.9
+`Q_0`   |Initial state-action value| 1.0
+
+> Table 1: parameters used
+
+The parameters for the Q-learning algorithm are shown in Table 1.
+The learning rate ,`alpha`, has range `0 < alpha < 1`, where
+`alpha = 1` is optimal for fully deterministic environments.
+As the game has stochasticity in it, 0.5 is picked,
+as it is simply the average between the two extremes.
+The discount factor ,`lambda`, has range `0 < lambda < 1`, where
+`lambda = 0` denotes an agent to always plays the action that gives
+the highest immediate reward, where `lambda` approaching 1 
+makes the agents take long-term effects into account.
+As in the game, some actions determine a lost game dozens of chapters
+in advance, a high `lambda` of 0.9 is picked.
+The initial state-action value, `Q_0` denote the payoff
+an agent expects for unexplored state-actions.
+To encourage exploration, a value of 1.0 (i.e. a certain win) is used.
 
 To answer H_0 and H_1, we measure the chance to win the game, when played
 optimally, for the different initial statistics and potion. 
