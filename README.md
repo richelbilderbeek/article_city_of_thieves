@@ -4,11 +4,20 @@
 
 City of Thieves is a text adventure in the form of a book.
 To beat it, a player has to make the right choices, in a stochastic environment.
-The optimal strategy to beat this game is unknown.
-Here we show the optimal strategy to beat this game.
+The optimal strategy to beat this game is unknown,
+yet according to author the effect of stochasticity is low.
+Here we show the optimal strategy to beat this game
+for different amounts of luck involved.
 [prime result here].
 
 ## Introduction
+
+> The one true way involves a minimum of risk and any player, 
+> no matter how weak on initial dice rolls, should be able to get through fairly easily. 
+>
+> Ian Livingstone
+
+### Adventure books
 
 In the 1980's, before the era of computing, adventure books
 allowed the reader to partake a fictional adventure.
@@ -18,24 +27,42 @@ to do one of multiple actions. Each action takes the player
 to a next chapter. The player ultimately completes the game
 or dies.
 
+### City of Thieves
+
 ![](Ff5puffin.jpg)
 
 > Cover of the first edition of 'City of Thieves'
 
-City of Thieves is a an adventure book written by Ian Livingstone in 1984.
-The player should venture to the castle of the protagonist,
+City of Thieves is a an adventure book written by Ian Livingstone in 1984,
+in which the player ventures to the castle of the protagonist,
 after having visited a certain person in a medieval city,
 the titular 'City of Thieves'. 
+
+### Premise
+
+In summary, with the game there are three characteristics
+the fictional character can have,
+which are determined from dice rolls.
+According to the quote of the author at the start of the article,
+a player should be able to succeed 'no matter how weak on initial dice rolls'.
+This research challenges that statement,
+as anekdotal evidence suggests otherwise.
+
+### Game rules
+
+#### Three statistics description
 
 A character has three statistics: health, skill and luck. 
 More health allows a player to take more damage,
 for example, taking hits in combat.
 More skill allows a player to be better in combat,
 as well as succeed in certain situations, 
-for example, [example].
+for example, when forcing open a door with one's shoulder.
 More luck allows a player in a situation that requires luck,
 for example, when an arrow trap springs, luck may let the player 
 avoid the (lethal!) arrow.
+
+#### Three statistics dynamics
 
 These three statistics can be modified within the game.
 Health can be increased by certain items, such as food. 
@@ -49,6 +76,8 @@ such as hearing a blessed song.
 Luck decreases mostly by using it (see below) or by certain events, such as 
 killing one of the key characters.
 
+#### Three statistics initialization
+
 The game starts with a character generation session, 
 similar to most RPGs.
 For one or more times, 4 dice are rolled.
@@ -59,26 +88,38 @@ deviates from the game, see 'Discussion'), the condition is the sum of two dice 
 where luck is the last dice roll value plus six.
 The player may roll as often as possible, allowing to get the best values,
 but this is quite dull.
-According to Livingstone, the adventure is constructed in such
-a way, that these dice rolls are of less importance. It is unknown,
-however, if the game can be completed with the worst dice rolls.
+As stated earlier, according to the author, the adventure is constructed in such
+a way, that these dice rolls are of less importance. 
+This research investigates the impact of these dice rolls (Hypothesis 0).
+
+#### Potions
 
 After the character generation session, a player may pick
 one of three potions, for either of the three statistics.
 Where the health and skill potion refresh their respective value
 to the initial value, a luck potion does so, as well as add one additional 
 point. It is an open question, which potion is best to pick
+This research investigates the impact of picking each of these potions (Hypothesis 1).
 
-At the start of the game, the player starts with [items] and [number] 
-gold coins. These items may be lost or sold. 
+#### Initial inventory
+
+At the start of the game, the player starts with 3 items (including
+the chosen potion), 30 gold coins and 10 provisions. 
+These items may be lost or sold. 
 The gold coins are used as a currency, to buy items or other situations,
 such as bribing a guard.
+The provisions allow a player to increase his/her health.
+
+### Types of chapters
 
 Within the actual game, there are multiple kinds of chapters.
 The most common type of chapter is to pick one of multiple
 actions. Sometimes some actions can only be picked after having
-acquired a certain item [example here]. The other types of chapters
+acquired a certain item, for example throwing a lantarn at a hostile mummy. 
+The other types of chapters
 are fighting chapters, logical chapters, luck chapters and skill chapters.
+
+#### Fighting chapter
 
 In a fighting chapter, the player fights one, two or three opponents.
 All opponents have a know value for their health and skill, that
@@ -90,16 +131,24 @@ A player can use luck to increase the damage dealt to the enemy,
 or to decrease the damage dealth by that enemy. Using luck decreases its
 value, decreasing the change of a positive event in successive usages. 
 
+#### Logical chapter
+
 A logical chapter is simply a conditional statement
 regarding the possession of an item. For example, when the
 player leaves the city, he/she needs to possess some key items,
 else the game is over.
 
+#### Luck and skill chapters
+
 Luck and skill chapters are similar: a player needs to roll the dice
 to test his/her skill or luck, after which a different chapter follows
-depending the success of this. An example of a skill chapter is [example].
-An example of a luck chapter is [example]. The only additional difference
-is that using luck decrease that statistic.
+depending the success of this. 
+An example of a skill chapter is a game where the player plays a game 
+of pricking a dagger between his/her fingers as quickly as possible.
+An example of a luck chapter is when a snake tries to bite the player. 
+The only additional difference is that using luck decrease that statistic.
+
+### Progression
 
 The adventure starts at the gates of the city, the first city
 streets, a bridge at which a vital character lives, some more city streets,
@@ -110,6 +159,8 @@ as the player cannot venture back.
 There is only location (the keep's 2nd and 3rd [check] floor) in which
 a location can be visited multiple times, but doing so is either
 neutral or detrimental.
+
+#### Cannot go back
 
 Because the player cannot go back and the player needs to acquire some
 essential items, some decisions cause the player to lose the game due to
@@ -122,12 +173,18 @@ The state transition, however, is informative: going from that
 junction directly to the final destination (without getting the
 key item) is a sure fail.
 
+#### The first junction
+
 Upon passing the city gate, there is junction, in which the player
 has to choose one of three streets. None of these streets contain an
 essential item and all lead to the same bridge. Yet, these three routes
 vary in the items a player can find as well as the amount of danger.
 It is unknown which of these three streets results in the
 highest chance of success.
+This research investigates which of these three roads gives the highest
+probability of finishing the game (Hypothesis 2).
+
+### Conclusion
 
 This research answers all the questions a player of 'City of Thieves'
 may have, solving one more puzzle that has plagued humanity for decades.
@@ -146,29 +203,25 @@ may have, solving one more puzzle that has plagued humanity for decades.
 To allow the game to be solved by a computer, it has been converted
 to a computer game. 
 
-We used [a] technique to answer the hypotheses.
+To conclude what the optimal strategy is,
+Q-learning (a type of reinforcement learning) is used,
+as this type of unsupervised learning assigns the value
+of each state numerically, allowing for comparison between,
+for example, good and mediocre states.
 
-We picked this technique, because [...]
-
-Assigning pay-off values to certain location is expected to fail,
-as only a location is uninformative. For example, one can reach a certain
-location by taking a short-cut, yet without acquiring an essential item. 
-
-Assigning pay-off values to certain choices is expected to be more 
-viable, as this will allow an algorithm to take a detour to obtain
-a vital item.
-
-To answer H_0 and H_1, we measure the change to win the game, when played
-optimally, for the different initial statistics and potion. If all chances
+To answer H_0 and H_1, we measure the chance to win the game, when played
+optimally, for the different initial statistics and potion. 
+The probability of winning the game is simply set to be the
+value of the initial state.
+If all chances
 are all equal, H_0 and H_1 is accepted. If chances differ between the
 different statistics, H0 is rejected. If chances are all identical, yet
 differ per initial potion, H_1 is rejected.
 
 To answer H_2, we measure the payoff the optimal stategy assigns to
-either of the three streets. If these payoffs are equal, H_2 is accepted,
+arriving at either of the three streets. 
+If these payoffs are equal, H_2 is accepted,
 else H2 is rejected.
-
-
 
 ## Results
 
@@ -180,11 +233,11 @@ else H2 is rejected.
 > Colors denote this chance, from red (0%) to green (100%) [let the
 > plotting algorithm decide]
 
-As can be seen in figure 1, there are different probabilies to win
+[Example reasoning] As can be seen in figure 1, there are different probabilies to win
 the game regarding the initial dice rolls. Therefore, H_0 is rejected.
 Instead, [interpret]
 
-As can be seen in figure 1, there are different probabilies to win
+[Example reasoning] As can be seen in figure 1, there are different probabilies to win
 the game regarding the initial choice of potion. Therefore, H_1 is rejected.
 Instead, picking a [some] potions gives the highest chance of success.
 
@@ -195,11 +248,11 @@ Instead, picking a [some] potions gives the highest chance of success.
 > denotes the chapter number as used in the book. The value next to each
 > edge denotes the expected payoff. Node 1 is the starting chapter,
 > where node 74 is the focal junction. The transitions between nodes 1 and
-> 74 are summarized by a grey rectangle. Target nodes are [?] Street (17), 
-> [?] Street (116) and [?] Street (95).
+> 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
+> Market Street (116) and Key Street (95).
 
-As can bee seen in figure 2, our algorithm assigned different 
-payoffs going from the junction (74) to [location] (114). Therefore, H_2 
+[Example reasoning] As can bee seen in figure 2, our algorithm assigned different 
+payoffs going from the junction (74) to [location] ([number]). Therefore, H_2 
 is reject. Instead, selecting to go to [location] is part of the optimal 
 strategy.
 
@@ -214,8 +267,8 @@ plus three, where in the book, one is allowed to add six to the dice roll
 instead. This difference is due to consistency and results in the
 same behavior: the book ignores that the initial armor and sword of the
 player are already accounting for three skill points. These values are
-known because in chapter [?] the starting armor is lost (2 skill points)
-and in chapter [?] the starting sword is lost (1 skill point). 
+known because in chapter 408 the starting armor is lost (2 skill points)
+and in chapter 126 the starting sword is lost (1 skill point). 
 
 Chapter 130 has a fight that has a maximum number of rounds.
 In the current implementation of the game, this fight has
@@ -226,7 +279,9 @@ consequence on our conclusions.
 ## Acknowledgements
 
 RJCB was the main writer of the manuscript.
-RJCB rewrote the book as a text adventure.
+RJCB rewrote the book as a text adventure, 
+together with Jeroen Niemandal, Carmen IJsebaart
+and Greg Fivash.
 
 ## Images
 
