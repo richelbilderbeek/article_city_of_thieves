@@ -214,7 +214,8 @@ Per possible character (i.e. combination of health, skill, luck and initial poti
 a machine learning teachnique is employed to make a computer
 learn to play the game optimally.
 
-Here we describe the type of machine learning technique, its parameters
+Here we describe the type of machine learning technique, 
+its parameters, the variables being measured,
 and its stopping rule.
 
 #### Q learning
@@ -263,6 +264,39 @@ and 1.0 for completing the game,
 without intermediate payoffs. The lack of intermediate payoffs may seems harsh, 
 but the game 'only' has around 400 chapters with 
 only a few (if any) choices per chapter.
+
+#### Variables being measured
+
+Per agent, the initial characterics (condition, skill, luck, type of potion)
+are known.
+When an agent finishes the game successfully, 
+the epoch as well as the following estimated payoffs are stored:
+
+Variable                  |Description
+--------------------------|-------------------------------------------------------------
+`p_start_1`               |Expected payoff for doing action 1 at the start
+`p_start_2`               |Expected payoff for doing action 2 at the start
+`p_start_3`               |Expected payoff for doing action 3 at the start
+`p_clock_street`          |Expected payoff for taking Clock Street
+`p_key_street`            |Expected payoff for taking Key Street
+`p_market_street`         |Expected payoff for taking Market Street
+`p_correct_final_choice_1`|Expected payoff for doing the correct choice at the end
+`p_wrong_final_choice_1`  |Expected payoff for doing the first wrong choice at the end
+`p_wrong_final_choice_2`  |Expected payoff for doing the second wrong choice at the end
+
+The first three variables allow to answer `H_1` and `H_2`,
+yet also serve as a control: the optimal route to
+go into the city is known. If the learner has learned correctly, 
+it should prefer the best route. 
+See Supplementary materials chapter 'Getting into the city' for this optimal route.
+
+The second trio of variables allows to answer `H_3`.
+
+The third trio of variables determine when the learner 
+has mastered the game (see next paragraph for this definition).
+Additionally, these serve as a control: the right action should
+still have a payoff of 1.0 (which is winning the game),
+the other two payoffs should both approach zero gradually and equally.
 
 #### Stopping rule
 
