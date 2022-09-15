@@ -274,7 +274,7 @@ As the agent is set to assign a payoff of 1.0 to unexplored states,
 it will try out each of these three states multiple times,
 hence lowering the estimated payoff.
 The game is mastered when the estimated payoffs of the losing
-actions is below 0.01.
+actions is below 0.01 (see figure S1 for an example).
 
 An alternative stopping rule is 10 days of run-time.
 
@@ -327,6 +327,22 @@ payoffs going from the junction (74) to [location] ([number]). Therefore, `H_3`
 is reject. Instead, selecting to go to [location] is part of the optimal 
 strategy.
 
+![](fig_3.png)
+
+> Figure 3: graph of the game, in which the nodes are the chapters,
+> and edges denotes the possible actions. The number within the node
+> denotes the chapter number as used in the book. The value next to each
+> edge denotes the expected payoff. Node 1 is the starting chapter,
+> where node 74 is the focal junction. The transitions between nodes 1 and
+> 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
+> Market Street (116) and Key Street (95).
+
+[Example reasoning] As can bee seen in Figure 3, our algorithm assigned different 
+payoffs going from the junction (74) to [location] ([number]). Therefore, `H_3` 
+is reject. Instead, selecting to go to [location] is part of the optimal 
+strategy.
+
+
 ## Conclusions
 
 ## Discussions
@@ -370,3 +386,20 @@ from [https://en.wikipedia.org/wiki/File:Ff5puffin.jpg](https://en.wikipedia.org
 
  * [Giddings, 2006] Giddings, Seth. Walkthrough: Videogames and technocultural form. Diss. University of the West of England, Bristol, 2006.
  * [Livingstone, 1984] Livingstone, Ian. City of Thieves. No. 5. Dell Pub Co, 1984.
+
+# Supplementary materials
+
+## Stopping rule
+
+![](fig_s1.png)
+
+> [This is an example] Figure S1: stopping rule. 
+> The final decision made by the player is to pick one out of three
+> options. One decision wins the game (hence, payoff is 1.0), where
+> each of the two others kill the player (with a payoff of 0.0).
+> As the agent is set to assign a payoff of 1.0 to unexplored states,
+> it will try out each of these three states multiple times,
+> hence lowering the estimated payoff.
+> The game is mastered when the estimated payoffs of the losing
+> actions is below 0.01.
+
