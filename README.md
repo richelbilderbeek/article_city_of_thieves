@@ -336,20 +336,33 @@ else `H_3` is rejected.
 > Colors denote this chance, from red (0%) to green (100%) [let the
 > plotting algorithm decide]
 
-[Example reasoning] As can be seen in figure 1, there are different probabilies to win
-the game regarding the initial dice rolls. Therefore, `H_1` is rejected.
-Instead, [interpret]
+Hypothesis                                                                |Verdict
+--------------------------------------------------------------------------|-------
+`H_1_H`: When picking a health potion, the initial dice roll is irrelevant|Rejected
+`H_1_S`: When picking a skill potion, the initial dice roll is irrelevant |Rejected
+`H_1_L`: When picking a luck potion, the initial dice roll is irrelevant  |Rejected
 
-[Example reasoning] As can be seen in figure 1, there are different probabilies to win
-the game regarding the initial choice of potion. Therefore, `H_2` is rejected.
-Instead, picking a [some] potions gives the highest chance of success.
+> [Example] Table 1: results of statistical tests regarding hypothesis `H_1`
 
 Hypothesis                                                                |Verdict
 --------------------------------------------------------------------------|-------
-`H_1_H`: When picking a health potion, the initial dice roll is irrelevant|False
-`H_1_S`: When picking a skill potion, the initial dice roll is irrelevant |False
-`H_1_L`: When picking a luck potion, the initial dice roll is irrelevant  |False
+`H_2_HS`: Picking a health or skill potion is irrelevant                  |Accepted
+`H_2_SL`: Picking a skill or luck potion is irrelevant                    |Accepted
+`H_2_LH`: Picking a luck or health potion is irrelevant                   |Accepted
 
+> [Example] Table 2: results of statistical tests regarding hypothesis `H_2`
+
+[Example reasoning] As can be seen in figure 1, there are different probabilies to win
+the game regarding the initial dice rolls. This suggests that `H_1` can
+be rejected. 
+Table 1 shows that this is statistically true.
+
+[Example reasoning] As can be seen in figure 1, there are different probabilies to win
+the game regarding the initial choice of potion. 
+This suggests that `H_2` can be rejected.
+Instead, picking a [some] potions gives the highest chance of success.
+Table 2 shows that this is statistically true and the [some] 
+potion results in the best chance to win the game.
 
 ![](fig_2.png)
 
@@ -358,10 +371,16 @@ Hypothesis                                                                |Verdi
 > and initial potion.
 > Colors denote the choice with the highest payoff
 
+Hypothesis                                                                |Verdict
+--------------------------------------------------------------------------|-------
+`H_2_CK`: Picking the Clock or Key Street is irrelevant                   |Accepted
+`H_2_KM`: Picking the Key or Market Street irrelevant                     |Accepted
+`H_2_MC`: Picking the Market or Clock street is irrelevant                |Accepted
+
+> [Example] Table 3: results of statistical tests regarding hypothesis `H_3`
+
 [Example reasoning] As can be seen in figure 2, 
 there are different best choices depending a player's character.
-
-
 
 ![](fig_3.png)
 
