@@ -364,12 +364,14 @@ Instead, picking a [some] potions gives the highest chance of success.
 Table 2 shows that this is statistically true and the [some] 
 potion results in the best chance to win the game.
 
-![](fig_2.png)
+![](test_fig_2.png)
 
-> Figure 2: the best choice at the first junction when played optimally,
+> [Example] Figure 2: the best street choice at the initial junction,
+> when played optimally, 
 > for the different initial statistics
-> and initial potion.
-> Colors denote the choice with the highest payoff
+> (x axis: condition, y axis: skill, rows = luck)
+> and initial potion (column).
+> Colors indicate the best street choice
 
 Hypothesis                                                                |Verdict
 --------------------------------------------------------------------------|-------
