@@ -62,6 +62,21 @@ More luck allows a player in a situation that requires luck,
 for example, when an arrow trap springs, luck may let the player 
 avoid the (lethal!) arrow.
 
+#### Three statistics initialization
+
+The game starts with a character generation session, 
+similar to most role playing games.
+To create a character, 4 dice are rolled.
+In a pre-defined order, the dice values determine the
+player's characteristics.
+A player's skill equals the first dice roll value plus three (this 
+deviates from the game, see 'Discussion'), the condition is the sum of two dice rolls,
+where luck is the last dice roll value plus six.
+The player may re-roll as often as possible.
+As stated earlier, according to the author, the adventure is constructed in such
+a way, that these dice rolls are of less importance. 
+This research investigates the impact of these dice rolls (`H_1`).
+
 #### Three statistics dynamics
 
 These three statistics can be modified within the game.
@@ -76,22 +91,6 @@ such as hearing a blessed song.
 Luck decreases mostly by using it (see below) or by certain events, such as 
 killing one of the key characters.
 
-#### Three statistics initialization
-
-The game starts with a character generation session, 
-similar to most RPGs.
-For one or more times, 4 dice are rolled.
-In a pre-defined order, the dice values determine the
-player's characteristics.
-A player's skill equals the first dice roll value plus three (this 
-deviates from the game, see 'Discussion'), the condition is the sum of two dice rolls,
-where luck is the last dice roll value plus six.
-The player may roll as often as possible, allowing to get the best values,
-but this is quite dull.
-As stated earlier, according to the author, the adventure is constructed in such
-a way, that these dice rolls are of less importance. 
-This research investigates the impact of these dice rolls (Hypothesis 0).
-
 #### Potions
 
 After the character generation session, a player may pick
@@ -99,7 +98,7 @@ one of three potions, for either of the three statistics.
 Where the health and skill potion refresh their respective value
 to the initial value, a luck potion does so, as well as add one additional 
 point. It is an open question, which potion is best to pick
-This research investigates the impact of picking each of these potions (Hypothesis 1).
+This research investigates the impact of picking each of these potions (`H_2`).
 
 #### Initial inventory
 
@@ -182,7 +181,7 @@ vary in the items a player can find as well as the amount of danger.
 It is unknown which of these three streets results in the
 highest chance of success.
 This research investigates which of these three roads gives the highest
-probability of finishing the game (Hypothesis 2).
+probability of finishing the game (`H_3`).
 
 ### Conclusion
 
@@ -191,29 +190,44 @@ may have, solving one more puzzle that has plagued humanity for decades.
 
 ## Hypotheses
 
- * H_0: the dice rolls at the start of the game do not influence the
+ * `H_1`: the dice rolls at the start of the game do not influence the
    chance of winning the game, when the game is played optimally
- * H_1: the potion picked at the start of the game does not influence the
+ * `H_2`: the potion picked at the start of the game does not influence the
    chance of winning the game, when the game is played optimally
- * H_2: it does not matter which of the three streets is picked at the initial
+ * `H_3`: it does not matter which of the three streets is picked at the initial
    junction for the chance of winning the game, when the game is played optimally
 
 ## Methods
+
+### Book to digital conversion
 
 To allow the game to be solved by a computer, it has been converted
 to a computer game. To get an global overview of the complexity
 of the game, it has been converted into a directional graph.
 
+### Learner
+
+Per possible character (i.e. combination of health, skill, luck and initial potion),
+a machine learning teachnique is employed to make a computer
+learn to play the game optimally.
+
+Here we describe the type of machine learning technique, its parameters
+and its stopping rule.
+
+#### Q learning
+
 To conclude what the optimal strategy is,
 an unsupervised reinforcement learning technique is used
-called Q-learning.
+called Q learning.
 This techique assigns a value to each state-action-combination,
 where one action can be predicted to lead to success
 and another as certain failure.
 This allows for comparison between good and mediocre states and actions,
-as is needed for Hypothesis 2.
+for example, as is needed for `H_3`.
 Measuring the expected success of the initial state and the best action, 
 the probablity of winning the game is quantified
+
+#### Q learning parameters
 
 Symbol  |Description               |Value
 --------|--------------------------|---------------------------------
@@ -224,41 +238,60 @@ Symbol  |Description               |Value
 > Table 1: parameters used
 
 The parameters for the Q-learning algorithm are shown in Table 1.
+
 The learning rate ,`alpha`, has range `0 < alpha < 1`, where
 `alpha = 1` is optimal for fully deterministic environments.
 As the game has stochasticity in it, 0.5 is picked,
 as it is simply the average between the two extremes.
+
 The discount factor ,`lambda`, has range `0 < lambda < 1`, where
 `lambda = 0` denotes an agent to always plays the action that gives
 the highest immediate reward, where `lambda` approaching 1 
 makes the agents take long-term effects into account.
 As in the game, some actions determine a lost game dozens of chapters
 in advance, a high `lambda` of 0.9 is picked.
+
 The initial state-action value, `Q_0` denote the payoff
 an agent expects for unexplored state-actions.
 To encourage exploration, a value of 1.0 (i.e. a certain win) is used.
+
 The final payoff of a trial is either 0.0 for dying 
 and 1.0 for completing the game, 
-without intermediate payoffs.
-The lack of intermediate payoffs may seems harsh, 
+without intermediate payoffs. The lack of intermediate payoffs may seems harsh, 
 but the game 'only' has around 400 chapters with 
 only a few (if any) choices per chapter.
-Learning is done per combination of initial player characteristics and type of potion.
-Learning is stopped after (1) 10 days of run-time 
-or (2) the algorithm has completed the game for 100k times.
 
-To answer H_0 and H_1, we measure the chance to win the game, when played
+#### Stopping rule
+
+Per possible character (i.e. combination of health, skill, luck and initial potion),
+learning is stopped after the algorithm has mastered the game.
+
+We define 'has mastered the game' the game as follows:
+the final decision made by the player is to pick one out of three
+options. One decision wins the game (hence, payoff is 1.0), where
+each of the two others kill the player (with a payoff of 0.0).
+As the agent is set to assign a payoff of 1.0 to unexplored states,
+it will try out each of these three states multiple times,
+hence lowering the estimated payoff.
+The game is mastered when the estimated payoffs of the losing
+actions is below 0.01.
+
+An alternative stopping rule is 10 days of run-time.
+
+### Inference
+
+To answer `H_1` and `H_2`, we measure the chance to win the game, when played
 optimally, for the different initial statistics and potion. 
 The probability of winning the game is simply set to be the
 value of the initial state.
 If all chances
-are all equal, H_0 and H_1 is accepted. If chances differ between the
+are all equal, `H_1` and `H_2` is accepted. If chances differ between the
 different statistics, H0 is rejected. If chances are all identical, yet
-differ per initial potion, H_1 is rejected.
+differ per initial potion, `H_2` is rejected.
 
-To answer H_2, we measure the payoff the optimal stategy assigns to
+To answer H_3, we measure the payoff the optimal stategy assigns to
 arriving at either of the three streets. 
-If these payoffs are equal, H_2 is accepted,
+If these payoffs are equal, `H_3` is accepted,
 else H2 is rejected.
 
 ## Results
@@ -272,11 +305,11 @@ else H2 is rejected.
 > plotting algorithm decide]
 
 [Example reasoning] As can be seen in figure 1, there are different probabilies to win
-the game regarding the initial dice rolls. Therefore, H_0 is rejected.
+the game regarding the initial dice rolls. Therefore, `H_1` is rejected.
 Instead, [interpret]
 
 [Example reasoning] As can be seen in figure 1, there are different probabilies to win
-the game regarding the initial choice of potion. Therefore, H_1 is rejected.
+the game regarding the initial choice of potion. Therefore, `H_2` is rejected.
 Instead, picking a [some] potions gives the highest chance of success.
 
 ![](fig_2.png)
@@ -290,7 +323,7 @@ Instead, picking a [some] potions gives the highest chance of success.
 > Market Street (116) and Key Street (95).
 
 [Example reasoning] As can bee seen in figure 2, our algorithm assigned different 
-payoffs going from the junction (74) to [location] ([number]). Therefore, H_2 
+payoffs going from the junction (74) to [location] ([number]). Therefore, `H_3` 
 is reject. Instead, selecting to go to [location] is part of the optimal 
 strategy.
 
