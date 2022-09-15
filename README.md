@@ -149,8 +149,8 @@ The only additional difference is that using luck decrease that statistic.
 
 ### Progression
 
-The adventure starts at the gates of the city, the first city
-streets, a bridge at which a vital character lives, some more city streets,
+The adventure starts at the gates of the city, the first junction, 
+a bridge at which a vital character lives, some more city streets,
 after which the city is left. If the player has acquired some esstial items,
 the adventure goes through a forest, followed by the keep of the protagonist.
 The story always go forwards, that is each location can only be visited once,
@@ -252,8 +252,9 @@ The discount factor ,`lambda`, has range `0 < lambda < 1`, where
 `lambda = 0` denotes an agent to always plays the action that gives
 the highest immediate reward, where `lambda` approaching 1 
 makes the agents take long-term effects into account.
-As in the game, some actions determine a lost game dozens of chapters
-in advance, a high `lambda` of 0.9 is picked.
+As in the game, some actions ensure the game is already lost,
+with the negative payoff only given dozens of chapters ahead.
+Due to this, a high `lambda` of 0.9 is picked.
 
 The initial state-action value, `Q_0` denote the payoff
 an agent expects for unexplored state-actions.
@@ -442,8 +443,8 @@ consequence on our conclusions.
 ## Knowledge of the data
 
 There has been an informal attempt to solve the game for a certain setting.
-This was done, however, with an algorithm that is probably incorrect,
-as well as with too few runs.
+This was done, however, with an algorithm that is probably incorrect
+and/or has been run with too few runs.
 This research will fix or rewrite that algorithm.
 
 ## Acknowledgements
@@ -517,3 +518,28 @@ As a control, we show the estimated payoffs for a best and a worst character.
 our algorithm assigned the same street as the best, which is Key Street.
 Interestingly, the other 2 streets have a lower payoff when the character 
 is worse. 
+
+## Getting into the city
+
+![](city_gate.png)
+
+> Figure S5: graph of the chapters to get into the city.
+> Chapter 1 is the starting chapter.
+> Chapter 74 is the chapter of the first junction.
+> Red circles denote a fighting chapter.
+> Blue circles denote a luck chapter.
+> Green circles denote a skill chapter.
+
+The first part of the game consists out of the player
+getting into the city, by passing the city gate 
+and arriving at the first junction.
+As can be seen in figure S5, 
+there is a only modest amount of ways to reach the first junction.
+
+The ideal route is a route without fighting, skill and luck chapters,
+as these are perfectly deterministic (note that all fights in these
+chapters yield no reward), leaving open a dozen of routes.
+Chapter 306, however, is the only chapter that gives a reward (a merchant
+pass and 2 gold pieces) without the need for any fights. 
+All actions leading to this chapter should hence give a higher payoff.
+
