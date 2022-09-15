@@ -283,19 +283,48 @@ An alternative stopping rule is 10 days of run-time.
 
 ### Inference
 
-To answer `H_1` and `H_2`, we measure the chance to win the game, when played
-optimally, for the different initial statistics and potion. 
-The probability of winning the game is simply set to be the
-value of the initial state.
+To answer `H_1` and `H_2`, 
+we measure the last ten percent of estimated chances to win the game,
+per the different character (i.e. initial statistics and potion),
+resulting in 1188 distributions.
+The estimated chance to win the game is defined as the
+estimated payoff for the best action at the initial state.
+
+For `H_1`, (the dice rolls at the start of the game do not influence the
+chance of winning the game, when the game is played optimally),
+we separate the data in 3 groups, 1 per initially chosen potion,
+resulting in 396 distributions of estimated chances to win the game.
+
+To accept/reject `H_1`, 
+we compare the distribution from the character with the best dice rolls (i.e. all sixes)
+to each other distribution, 
+using a Kolmogorov-Smirnoff test,
+resulting in 396 tests (the best character is compared to itself as a control).
+As this is a computational experiment, 
+the courage is had to set the type 1 error level (aka `alpha`) to 0.01.
+A Bonferroni correction is used to control for multiple testing, 
+resulting in a corrected alpha value of (0.01 / 396) / 3 = 0.000008418 .
+If at least 1 KS test shows that there is a significant difference between
+the chance to win between the character with the best dice rolls and another, 
+`H_1` is rejected. This is done for each of the three potions, resulting
+in 3 verdicts.
+
+
+ * `H_2`: the potion picked at the start of the game does not influence the
+   chance of winning the game, when the game is played optimally
+ * `H_3`: it does not matter which of the three streets is picked at the initial
+   junction for the chance of winning the game, when the game is played optimally
+
+
 If all chances
 are all equal, `H_1` and `H_2` is accepted. If chances differ between the
-different statistics, H0 is rejected. If chances are all identical, yet
+different statistics, `H_1` is rejected. If chances are all identical, yet
 differ per initial potion, `H_2` is rejected.
 
-To answer H_3, we measure the payoff the optimal stategy assigns to
+To answer `H_3`, we measure the payoff the optimal stategy assigned to
 arriving at either of the three streets. 
 If these payoffs are equal, `H_3` is accepted,
-else H2 is rejected.
+else `H_3` is rejected.
 
 ## Results
 
@@ -314,6 +343,25 @@ Instead, [interpret]
 [Example reasoning] As can be seen in figure 1, there are different probabilies to win
 the game regarding the initial choice of potion. Therefore, `H_2` is rejected.
 Instead, picking a [some] potions gives the highest chance of success.
+
+Hypothesis                                                                |Verdict
+--------------------------------------------------------------------------|-------
+`H_1_H`: When picking a health potion, the initial dice roll is irrelevant|False
+`H_1_S`: When picking a skill potion, the initial dice roll is irrelevant |False
+`H_1_L`: When picking a luck potion, the initial dice roll is irrelevant  |False
+
+
+![](fig_2.png)
+
+> Figure 2: the best choice at the first junction when played optimally,
+> for the different initial statistics
+> and initial potion.
+> Colors denote the choice with the highest payoff
+
+[Example reasoning] As can be seen in figure 2, 
+there are different best choices depending a player's character.
+
+
 
 ![](fig_3.png)
 
