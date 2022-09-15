@@ -328,13 +328,13 @@ else `H_3` is rejected.
 
 ## Results
 
-![](fig_1.png)
+![](test_fig_1.png)
 
 > Figure 1: the chance to win the game when played optimally,
 > for the different initial statistics
-> and initial potion.
-> Colors denote this chance, from red (0%) to green (100%) [let the
-> plotting algorithm decide]
+> (x axis: condition, y axis: skill, rows = luck)
+> and initial potion (column).
+> Colors denote this chance, from red (0%) to green (100%)
 
 Hypothesis                                                                |Verdict
 --------------------------------------------------------------------------|-------
