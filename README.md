@@ -208,7 +208,21 @@ To allow the game to be solved by a computer, it has been converted
 to a computer game. To get an global overview of the complexity
 of the game, it has been converted into a directional graph.
 
-### Learner
+### Approaches
+
+There are two approaches how to conclude how to play the game optimally:
+
+  * Approach 1: Train a computer to do so
+  * Approach 2: Simplify the problem manually, then solve mathematically
+
+In both cases, the game needs to be simplified.
+First, I will describe Approach 1, 
+which is how to train a computer to solve the problem.
+This ends with the conclusion that the problem is too complex.
+Then I describe how to simplify the problem,
+after which I describe Approach 2.
+
+### Approach 1: Train a computer to do so
 
 Per possible character (i.e. combination of health, skill, luck and initial potion),
 a machine learning teachnique is employed to make a computer
@@ -216,7 +230,7 @@ learn to play the game optimally.
 
 Here we describe the type of machine learning technique, 
 its parameters, the variables being measured,
-and its stopping rule.
+and its stopping rule. 
 
 #### Q learning
 
@@ -316,7 +330,57 @@ actions is below 0.01 (see figure S1 for an example).
 
 An alternative stopping rule is 10 days of run-time.
 
+### The need to simplify the problem
+
+It is known that Q learning will converge to the optimal
+solution, given enough time. 
+However, here I will show with some back-of-the-envelope calculations that
+there is a need to simplify the problem.
+
+From looking at the graph of the game, there are approximately
+100 chapters the player will go through before the game is won.
+Each chapter has approximately 2 choices on average.
+This means that a naive learner has to explore 2 to the power of 100
+possibility equals 1.2*10^30 options (1.2 quintillion options).
+A regular computer (i.e. mine) of 1.6 GHz can do (by definition)
+1.6*10^9 machine-level calculations per second.
+Let's assume something silly, 
+which is that a learner needs 1 machine-level to play the game and update its state.
+That means that 1.2*10^30 / 1.6*10^9 = 7.5*10^20 seconds, which is
+2.4*10^13 years, which is about twice as long as the age of the universe.
+
+Hence, the problem needs to be simplified
+
+### How to simplify the problem
+
+A way to simplify the problem, is to remove actions that result in a certain
+death. As an example, I use chapter 370, in which the character enters
+a garden. Upon seeing potential danger, the player is given the option
+to leave the garden. This, however, leads to a certain ultimate death,
+as the garden contains an essential item. In this context,
+the option to leave the garden is disabled.
+
+The algorith to do so is simple: remove all actions that bypass an essential
+item. In that way, all routes have the potential of winning the game.
+As a control, however, I will keep in the option to pick the 2 lethally
+wrong options at the final fight, to assure the machine learning algorithm
+works correctly.
+
+### Approach 2: Simplify the problem manually, then solve mathematically
+
+The book has 400 chapters of which approximately 100 will be traversed.
+A commonly given option is to go inside a house/shop/etc.
+As whatever happens in this detour is simple to find the optimal
+approach of, a human can easily determine the optimal strategy for these,
+including the option not to take the detour. 
+Chopping the problem up into pieces manually will give a clear idea
+what is the optimal solution. 
+
 ### Inference
+
+Here I discribe how the conlusions are inferred, for both approaches.
+
+#### Approach 1: Inference
 
 To answer `H_1` and `H_2`, 
 we measure the last ten percent of estimated chances to win the game,
@@ -343,13 +407,6 @@ If at least 1 KS test shows that there is a significant difference between
 the chance to win between the character with the best dice rolls and another, 
 `H_1` is rejected. This is done for each of the three potions, resulting
 in 3 verdicts.
-
-
- * `H_2`: the potion picked at the start of the game does not influence the
-   chance of winning the game, when the game is played optimally
- * `H_3`: it does not matter which of the three streets is picked at the initial
-   junction for the chance of winning the game, when the game is played optimally
-
 
 If all chances
 are all equal, `H_1` and `H_2` is accepted. If chances differ between the
