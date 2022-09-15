@@ -330,7 +330,7 @@ else `H_3` is rejected.
 
 ![](test_fig_1.png)
 
-> Figure 1: the chance to win the game when played optimally,
+> [Example] Figure 1: the chance to win the game when played optimally,
 > for the different initial statistics
 > (x axis: condition, y axis: skill, rows = luck)
 > and initial potion (column).
@@ -382,17 +382,8 @@ Hypothesis                                                                |Verdi
 > [Example] Table 3: results of statistical tests regarding hypothesis `H_3`
 
 [Example reasoning] As can be seen in figure 2, 
-there are different best choices depending a player's character.
-
-![](fig_3.png)
-
-> Figure 3: estimated payoffs for the three streets that can be picked
-> at the first junction.
-
-[Example reasoning] As can bee seen in Figure 3, our algorithm assigned different 
-payoffs going from the junction (74) to each of the streets. 
-For this character, picking Key Street results in the highest payoff.
-
+the best choice is usually Key Street. 
+In only one case, the best street to pick is Market Street.
 
 ## Conclusions
 
@@ -458,6 +449,8 @@ from [https://en.wikipedia.org/wiki/File:Ff5puffin.jpg](https://en.wikipedia.org
 
 ## First junction
 
+Figure S2 shows part of the graphs' section where the initial junction is.
+
 ![](fig_s2.png)
 
 > [Example] Figure S2: graph of the game at the first junction,
@@ -468,3 +461,25 @@ from [https://en.wikipedia.org/wiki/File:Ff5puffin.jpg](https://en.wikipedia.org
 > where node 74 is the focal junction. The transitions between nodes 1 and
 > 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
 > Market Street (116) and Key Street (95).
+
+`H_3` investigates if picking a different street matters, when each street
+is played optimally.
+
+As a control, we show the estimated payoffs for a best and a worst character.
+
+![](fig_s3.png)
+
+> [Example] Figure S3: estimated payoffs for the three streets that can be picked
+> at the first junction 
+> for a player with the best dice rolls and a luck potion.
+
+![](fig_s4.png)
+
+> [Example] Figure S4: estimated payoffs for the three streets that can be picked
+> at the first junction 
+> for a player with the worst dice rolls and a condition potion.
+
+[Example reasoning] As can bee seen in Figures S3 and S4, 
+our algorithm assigned the same street as the best, which is Key Street.
+Interestingly, the other 2 streets have a lower payoff when the character 
+is worse. 
