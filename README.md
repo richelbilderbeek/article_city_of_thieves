@@ -183,6 +183,17 @@ highest chance of success.
 This research investigates which of these three roads gives the highest
 probability of finishing the game (`H_3`).
 
+![](fig_2.png)
+
+> [Example] Figure 2: graph of the game at the first junction,
+> in which the nodes are the chapters,
+> and edges denotes the possible actions. The number within the node
+> denotes the chapter number as used in the book. 
+> Node 1 is the starting chapter,
+> where node 74 is the focal junction. The transitions between nodes 1 and
+> 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
+> Market Street (116) and Key Street (95).
+
 ### Conclusion
 
 This research answers all the questions a player of 'City of Thieves'
@@ -312,35 +323,14 @@ Instead, [interpret]
 the game regarding the initial choice of potion. Therefore, `H_2` is rejected.
 Instead, picking a [some] potions gives the highest chance of success.
 
-![](fig_2.png)
-
-> Figure 2: graph of the game, in which the nodes are the chapters,
-> and edges denotes the possible actions. The number within the node
-> denotes the chapter number as used in the book. The value next to each
-> edge denotes the expected payoff. Node 1 is the starting chapter,
-> where node 74 is the focal junction. The transitions between nodes 1 and
-> 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
-> Market Street (116) and Key Street (95).
-
-[Example reasoning] As can bee seen in figure 2, our algorithm assigned different 
-payoffs going from the junction (74) to [location] ([number]). Therefore, `H_3` 
-is reject. Instead, selecting to go to [location] is part of the optimal 
-strategy.
-
 ![](fig_3.png)
 
-> Figure 3: graph of the game, in which the nodes are the chapters,
-> and edges denotes the possible actions. The number within the node
-> denotes the chapter number as used in the book. The value next to each
-> edge denotes the expected payoff. Node 1 is the starting chapter,
-> where node 74 is the focal junction. The transitions between nodes 1 and
-> 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
-> Market Street (116) and Key Street (95).
+> Figure 3: estimated payoffs for the three streets that can be picked
+> at the first junction.
 
 [Example reasoning] As can bee seen in Figure 3, our algorithm assigned different 
-payoffs going from the junction (74) to [location] ([number]). Therefore, `H_3` 
-is reject. Instead, selecting to go to [location] is part of the optimal 
-strategy.
+payoffs going from the junction (74) to each of the streets. 
+For this character, picking Key Street results in the highest payoff.
 
 
 ## Conclusions
