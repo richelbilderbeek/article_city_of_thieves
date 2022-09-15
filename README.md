@@ -175,24 +175,16 @@ key item) is a sure fail.
 #### The first junction
 
 Upon passing the city gate, there is junction, in which the player
-has to choose one of three streets. None of these streets contain an
-essential item and all lead to the same bridge. Yet, these three routes
+has to choose one of three streets (see also Figure S2). 
+None of these streets contain an
+essential item and all converge back to a same 
+location (the bridge that crosses the Catfish River). 
+Yet, these three routes
 vary in the items a player can find as well as the amount of danger.
 It is unknown which of these three streets results in the
 highest chance of success.
 This research investigates which of these three roads gives the highest
 probability of finishing the game (`H_3`).
-
-![](fig_2.png)
-
-> [Example] Figure 2: graph of the game at the first junction,
-> in which the nodes are the chapters,
-> and edges denotes the possible actions. The number within the node
-> denotes the chapter number as used in the book. 
-> Node 1 is the starting chapter,
-> where node 74 is the focal junction. The transitions between nodes 1 and
-> 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
-> Market Street (116) and Key Street (95).
 
 ### Conclusion
 
@@ -383,13 +375,27 @@ from [https://en.wikipedia.org/wiki/File:Ff5puffin.jpg](https://en.wikipedia.org
 
 ![](fig_s1.png)
 
-> [This is an example] Figure S1: stopping rule. 
-> The final decision made by the player is to pick one out of three
-> options. One decision wins the game (hence, payoff is 1.0), where
+> [This is an example] Figure S1: 
+> payoffs for a possible character (i.e. combination of health, skill, luck and initial potion)
+> in time for the final decion.
+> The final decision is to pick one out of three options. 
+> One decision wins the game (hence, payoff is 1.0), where
 > each of the two others kill the player (with a payoff of 0.0).
 > As the agent is set to assign a payoff of 1.0 to unexplored states,
 > it will try out each of these three states multiple times,
 > hence lowering the estimated payoff.
 > The game is mastered when the estimated payoffs of the losing
-> actions is below 0.01.
+> actions are both below 0.01.
 
+## First junction
+
+![](fig_s2.png)
+
+> [Example] Figure S2: graph of the game at the first junction,
+> in which the nodes are the chapters,
+> and edges denotes the possible actions. The number within the node
+> denotes the chapter number as used in the book. 
+> Node 1 is the starting chapter,
+> where node 74 is the focal junction. The transitions between nodes 1 and
+> 74 are summarized by a grey rectangle. Target nodes are Clock Street (17), 
+> Market Street (116) and Key Street (95).
