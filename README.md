@@ -633,13 +633,33 @@ an indefinite number of possible rounds, similar to any regular fight.
 Because the optimal strategy avoids this fight, I expect this has no
 consequence on our conclusions.
 
-In both approaches, the simulated player does the foll
+For both approaches, the simulated player does not use luck in battles.
+This simplifies the problem quite drastically, as a player's 
+luck is only tested rarely in optimal runs.
 
 ## Knowledge of the data
 
-There has been an informal attempt to solve the game for a certain setting.
-This was done, however, with an algorithm that is probably incorrect
-and/or has been run with too few runs.
+The author is familiar with the book,
+as he played the book as a kid, 
+and played the game as an adult.
+
+There has been an informal attempt to solve the game for an optimal character
+(yet, without a potion) using approach 1.
+
+![](final_payoffs.png)
+
+> Figure 5: Payoffs as determined by an earlier attempt.
+
+This was done, however, with an algorithm that is probably incorrect,
+and for sure has not run long enough.
+This can be concluded in Figure 5, which shows the graph of the final fight.
+In chapter 244 the player is asked to make one choice out of three,
+where one will win the game, and two result in game over.
+In a well-trained algorithm the payoff should be high for the correct
+choice and zero for the bad choices.
+In Figure 5 one can see that the payoffs for the bad choices are 1.0.
+This means that these have never explored.
+
 This research will fix or rewrite that algorithm.
 
 ## Acknowledgements
