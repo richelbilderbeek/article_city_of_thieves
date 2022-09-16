@@ -232,7 +232,7 @@ Here I describe the type of machine learning technique,
 its parameters, the variables being measured,
 and its stopping rule. 
 
-#### Q learning
+#### Approach 1: Q learning
 
 To conclude what the optimal strategy is,
 an unsupervised reinforcement learning technique is used
@@ -245,7 +245,7 @@ for example, as is needed for `H_3`.
 Measuring the expected success of the initial state and the best action, 
 the probablity of winning the game is quantified
 
-#### Q learning parameters
+#### Approach 1: Q learning parameters
 
 Symbol  |Description               |Value
 --------|--------------------------|---------------------------------
@@ -280,7 +280,7 @@ without intermediate payoffs. The lack of intermediate payoffs may seems harsh,
 but the game 'only' has around 400 chapters with 
 only a few (if any) choices per chapter.
 
-#### Variables being measured
+#### Approach 1: Variables being measured
 
 Per agent, the initial characterics (condition, skill, luck, type of potion)
 are known.
@@ -313,7 +313,7 @@ Additionally, these serve as a control: the right action should
 still have a payoff of 1.0 (which is winning the game),
 the other two payoffs should both approach zero gradually and equally.
 
-#### Stopping rule
+#### Approach 1: Stopping rule
 
 Per possible character (i.e. combination of health, skill, luck and initial potion),
 learning is stopped after the algorithm has mastered the game.
@@ -422,6 +422,8 @@ Nodes that will be preserved are fights, testing of condition/skill/luck
 and getting rewards. From this simplied graph, 
 the probabily to survive can be calculated.
 
+#### Approach 2: example adventure
+
 Here, I illustrate this method with an example adventure:
 
 ```mermaid
@@ -488,11 +490,34 @@ Route|Chance to survive
 
 In this way, it can be concluded that route 2 is the optimal route.
 
+#### Approach 2: Inference
 
+To answer `H_1` and `H_2`, 
+the chances to win the game
+per different character (i.e. initial statistics and potion)
+are calculated.
 
+For `H_1`, (the dice rolls at the start of the game do not influence the
+chance of winning the game, when the game is played optimally),
+the data in 3 groups, 1 per initially chosen potion.
+If all probabilities in a group are identical, `H_1` is accepted,
+else it is rejected.
 
+For `H_2`, (the initial potion does not influence the
+chance of winning the game, when the game is played optimally),
+the probabilities to win the game are compared.
+If these probabilities are identical per potion, `H_2` is accepted,
+else it is rejected.
+
+To answer `H_3`, the optimal route is determined per each of the three
+streets. For each route, the probability to survive the game
+is already known. 
+The route with the highest chance to survive the game 
+is concluded to the best route.
 
 ## Results
+
+### Results: Approach 1
 
 ![](test_fig_1.png)
 
@@ -500,7 +525,8 @@ In this way, it can be concluded that route 2 is the optimal route.
 > for the different initial statistics
 > (x axis: condition, y axis: skill, rows = luck)
 > and initial potion (column).
-> Colors denote this chance, from red (0%) to green (100%)
+> Colors denote this chance, from red (0%) to green (100%).
+> Values are determined using Approach 1
 
 Hypothesis                                                                |Verdict
 --------------------------------------------------------------------------|-------
@@ -537,7 +563,8 @@ potion results in the best chance to win the game.
 > for the different initial statistics
 > (x axis: condition, y axis: skill, rows = luck)
 > and initial potion (column).
-> Colors indicate the best street choice
+> Colors indicate the best street choice.
+> Values are determined using Approach 1
 
 Hypothesis                                                                |Verdict
 --------------------------------------------------------------------------|-------
@@ -548,6 +575,41 @@ Hypothesis                                                                |Verdi
 > [Example] Table 3: results of statistical tests regarding hypothesis `H_3`
 
 [Example reasoning] As can be seen in figure 2, 
+the best choice is usually Key Street. 
+In only one case, the best street to pick is Market Street.
+
+
+### Results: Approach 2
+
+![](test_fig_1.png)
+
+> [Example] Figure 4: the chance to win the game when played optimally,
+> for the different initial statistics
+> (x axis: condition, y axis: skill, rows = luck)
+> and initial potion (column).
+> Colors denote this chance, from red (0%) to green (100%).
+> Values are determined using Approach 2
+
+[Example reasoning] As can be seen in figure 1, there are different probabilies to win
+the game regarding the initial dice rolls. This suggests that `H_1` can
+be rejected. 
+
+[Example reasoning] As can be seen in figure 1, there are different probabilies to win
+the game regarding the initial choice of potion. 
+This suggests that `H_2` can be rejected.
+Instead, picking a [some] potions gives the highest chance of success.
+
+![](test_fig_2.png)
+
+> [Example] Figure 5: the best street choice at the initial junction,
+> when played optimally, 
+> for the different initial statistics
+> (x axis: condition, y axis: skill, rows = luck)
+> and initial potion (column).
+> Colors indicate the best street choice.
+> Values are determined using Approach 2
+
+[Example reasoning] As can be seen in figure 5, 
 the best choice is usually Key Street. 
 In only one case, the best street to pick is Market Street.
 
