@@ -222,6 +222,10 @@ This ends with the conclusion that the problem is too complex.
 Then I describe how to simplify the problem,
 after which I describe Approach 2.
 
+Note that each approach serves as controls for the other:
+where Approach 1 estimates the chance to survive,
+Approach 2 calculates this.
+
 ### Approach 1: Train a computer to do so
 
 Per possible character (i.e. combination of health, skill, luck and initial potion),
