@@ -583,25 +583,25 @@ In only one case, the best street to pick is Market Street.
 
 ![](test_fig_1.png)
 
-> [Example] Figure 4: the chance to win the game when played optimally,
+> [Example] Figure 3: the chance to win the game when played optimally,
 > for the different initial statistics
 > (x axis: condition, y axis: skill, rows = luck)
 > and initial potion (column).
 > Colors denote this chance, from red (0%) to green (100%).
 > Values are determined using Approach 2
 
-[Example reasoning] As can be seen in figure 1, there are different probabilies to win
+[Example reasoning] As can be seen in figure 3, there are different probabilies to win
 the game regarding the initial dice rolls. This suggests that `H_1` can
 be rejected. 
 
-[Example reasoning] As can be seen in figure 1, there are different probabilies to win
+[Example reasoning] As can be seen in figure 3, there are different probabilies to win
 the game regarding the initial choice of potion. 
 This suggests that `H_2` can be rejected.
 Instead, picking a [some] potions gives the highest chance of success.
 
 ![](test_fig_2.png)
 
-> [Example] Figure 5: the best street choice at the initial junction,
+> [Example] Figure 4: the best street choice at the initial junction,
 > when played optimally, 
 > for the different initial statistics
 > (x axis: condition, y axis: skill, rows = luck)
@@ -609,7 +609,7 @@ Instead, picking a [some] potions gives the highest chance of success.
 > Colors indicate the best street choice.
 > Values are determined using Approach 2
 
-[Example reasoning] As can be seen in figure 5, 
+[Example reasoning] As can be seen in figure 4, 
 the best choice is usually Key Street. 
 In only one case, the best street to pick is Market Street.
 
@@ -632,6 +632,8 @@ In the current implementation of the game, this fight has
 an indefinite number of possible rounds, similar to any regular fight.
 Because the optimal strategy avoids this fight, I expect this has no
 consequence on our conclusions.
+
+In both approaches, the simulated player does the foll
 
 ## Knowledge of the data
 
