@@ -600,3 +600,18 @@ Chapter 306, however, is the only chapter that gives a reward (a merchant
 pass and 2 gold pieces) without the need for any fights. 
 All actions leading to this chapter should hence give a higher payoff.
 
+## Example adventure
+
+```mermaid
+graph TD;
+    0((Gate))-->|Action 1: Do nothing|100[Guard];
+    0-->|Action 2: Get vital item|100;
+
+    100((First junction))-->|Action 1: Avoid monster|200[Final fight];
+    100-->|Action 2: Fight monster|110[Monster fight];
+    110-->120[Reward]
+    120-->200
+    200-->|Action 1: Has vital item|210((Start fight));
+    200-->|Action 2: Has no vital item|400((Game lost));
+    210-->|Fight|300((Game won));
+```
