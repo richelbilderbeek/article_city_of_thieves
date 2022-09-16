@@ -6,7 +6,7 @@ City of Thieves is a text adventure in the form of a book.
 To beat it, a player has to make the right choices, in a stochastic environment.
 The optimal strategy to beat this game is unknown,
 yet according to author the effect of stochasticity is low.
-Here we show the optimal strategy to beat this game
+Here I show the optimal strategy to beat this game
 for different amounts of luck involved.
 [prime result here].
 
@@ -228,7 +228,7 @@ Per possible character (i.e. combination of health, skill, luck and initial poti
 a machine learning teachnique is employed to make a computer
 learn to play the game optimally.
 
-Here we describe the type of machine learning technique, 
+Here I describe the type of machine learning technique, 
 its parameters, the variables being measured,
 and its stopping rule. 
 
@@ -318,7 +318,7 @@ the other two payoffs should both approach zero gradually and equally.
 Per possible character (i.e. combination of health, skill, luck and initial potion),
 learning is stopped after the algorithm has mastered the game.
 
-We define 'has mastered the game' the game as follows:
+I define 'has mastered the game' the game as follows:
 the final decision made by the player is to pick one out of three
 options. One decision wins the game (hence, payoff is 1.0), where
 each of the two others kill the player (with a payoff of 0.0).
@@ -366,24 +366,10 @@ As a control, however, I will keep in the option to pick the 2 lethally
 wrong options at the final fight, to assure the machine learning algorithm
 works correctly.
 
-### Approach 2: Simplify the problem manually, then solve mathematically
-
-The book has 400 chapters of which approximately 100 will be traversed.
-A commonly given option is to go inside a house/shop/etc.
-As whatever happens in this detour is simple to find the optimal
-approach of, a human can easily determine the optimal strategy for these,
-including the option not to take the detour. 
-Chopping the problem up into pieces manually will give a clear idea
-what is the optimal solution. 
-
-### Inference
-
-Here I discribe how the conlusions are inferred, for both approaches.
-
 #### Approach 1: Inference
 
 To answer `H_1` and `H_2`, 
-we measure the last ten percent of estimated chances to win the game,
+I measure the last ten percent of estimated chances to win the game,
 per the different character (i.e. initial statistics and potion),
 resulting in 1188 distributions.
 The estimated chance to win the game is defined as the
@@ -391,11 +377,11 @@ estimated payoff for the best action at the initial state.
 
 For `H_1`, (the dice rolls at the start of the game do not influence the
 chance of winning the game, when the game is played optimally),
-we separate the data in 3 groups, 1 per initially chosen potion,
+I separate the data in 3 groups, 1 per initially chosen potion,
 resulting in 396 distributions of estimated chances to win the game.
 
 To accept/reject `H_1`, 
-we compare the distribution from the character with the best dice rolls (i.e. all sixes)
+I compare the distribution from the character with the best dice rolls (i.e. all sixes)
 to each other distribution, 
 using a Kolmogorov-Smirnoff test,
 resulting in 396 tests (the best character is compared to itself as a control).
@@ -413,10 +399,98 @@ are all equal, `H_1` and `H_2` is accepted. If chances differ between the
 different statistics, `H_1` is rejected. If chances are all identical, yet
 differ per initial potion, `H_2` is rejected.
 
-To answer `H_3`, we measure the payoff the optimal stategy assigned to
+To answer `H_3`, I measure the payoff the optimal stategy assigned to
 arriving at either of the three streets. 
 If these payoffs are equal, `H_3` is accepted,
 else `H_3` is rejected.
+
+### Approach 2: Simplify the problem manually, then solve mathematically
+
+The second approach is to simplify the problem manually, 
+then solve mathematically.
+The book has 400 chapters of which approximately 100 will be traversed.
+A commonly given option is to go inside a house/shop/etc. 
+to explore if there are useful resources inside.
+An experiened player will quickly learn which places to visit and
+which ones to avoid.
+Additionally, some fights give a useful reward, yet others have no
+benefit at all.
+For both explorations and (avoidable) fights, 
+it is simple to find the optimal solution.
+In this way, the game can be simplified into a simpler graph manually.
+Nodes that will be preserved are fights, testing of condition/skill/luck
+and getting rewards. From this simplied graph, 
+the probabily to survive can be calculated.
+
+Here, I illustrate this method with an example adventure:
+
+```mermaid
+graph TD;
+    0((Gate))-->|Action 1: Do nothing|100;
+    0-->|Action 2: Get vital item|100;
+    100((First junction))-->|Action 1: Avoid monster|200[Final fight];
+    100-->|Action 2: Fight monster|110[Monster fight];
+    110-->120[Reward]
+    120-->200
+    200-->|Action 1: Has vital item|210((Start fight));
+    200-->|Action 2: Has no vital item|400((Game lost));
+    210-->|Fight final boss|300((Game won));
+```
+
+Note the 'Reward' state here. For this example to be interesting, assume
+that this is a useful item to inprove the chances at the final fight.
+
+In this graph, there are 8 ways to traverse the graph.
+Using the same simplification, this results in this graph:
+
+```mermaid
+graph TD;
+    0((Gate))-->|Action 2: Get vital item|100;
+    100((First junction))-->|Action 1: Avoid monster|200[Final fight];
+    100-->|Action 2: Fight monster|110[Monster fight];
+    110-->120[Reward]
+    120-->200
+    200-->|Action 1: Has vital item|210((Start fight));
+    210-->|Fight final boss|300((Game won));
+```
+
+Now there are two strategies:
+
+ * At 'First Junction' avoid the fight, to only fight the final boss
+ * At 'First Junction', fight the monster, to get the reward to improve
+   the chances at the final boss
+
+Using Approach 1, with machine learning, the optimal solution will be
+learned without supervision.
+
+Using Approach 2, the problem simplifies to the following pseudonotation:
+
+Route|Actions
+-----|----------------
+1    |1: Avoid monster
+2    |2: Fight monster
+
+It is possible to measure the chances to die at a fight. 
+Let's assume the following chances:
+
+Fight|Has reward|Chance to survive
+-----|----------|-----------------
+First|NA        |0.9
+Final|No        |0.8
+Final|Yes       |0.9
+
+In this case, for both routes, the chance to survive can be determined:
+
+Route|Chance to survive
+-----|-----------------
+1    |0.8
+2    |0.9 * 0.9 = 0.81
+
+In this way, it can be concluded that route 2 is the optimal route.
+
+
+
+
 
 ## Results
 
@@ -494,7 +568,7 @@ and in chapter 126 the starting sword is lost (1 skill point).
 Chapter 130 has a fight that has a maximum number of rounds.
 In the current implementation of the game, this fight has
 an indefinite number of possible rounds, similar to any regular fight.
-Because the optimal strategy avoids this fight, we expect this has no
+Because the optimal strategy avoids this fight, I expect this has no
 consequence on our conclusions.
 
 ## Knowledge of the data
@@ -557,7 +631,7 @@ Figure S2 shows part of the graphs' section where the initial junction is.
 `H_3` investigates if picking a different street matters, when each street
 is played optimally.
 
-As a control, we show the estimated payoffs for a best and a worst character.
+As a control, I show the estimated payoffs for a best and a worst character.
 
 ![](fig_s3.png)
 
@@ -599,19 +673,3 @@ chapters yield no reward), leaving open a dozen of routes.
 Chapter 306, however, is the only chapter that gives a reward (a merchant
 pass and 2 gold pieces) without the need for any fights. 
 All actions leading to this chapter should hence give a higher payoff.
-
-## Example adventure
-
-```mermaid
-graph TD;
-    0((Gate))-->|Action 1: Do nothing|100[Guard];
-    0-->|Action 2: Get vital item|100;
-
-    100((First junction))-->|Action 1: Avoid monster|200[Final fight];
-    100-->|Action 2: Fight monster|110[Monster fight];
-    110-->120[Reward]
-    120-->200
-    200-->|Action 1: Has vital item|210((Start fight));
-    200-->|Action 2: Has no vital item|400((Game lost));
-    210-->|Fight|300((Game won));
-```
