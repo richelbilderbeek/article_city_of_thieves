@@ -1,0 +1,18 @@
+digraph SimplifiedExample {
+0[label="Gate" shape=ellipse color=black];
+10[label="Vital item" shape=doublecircle color=black];
+100[label="First junction" shape=ellipse color=black];
+110[label="Fight monster" shape=ellipse color=red];
+120[label="Reward" shape=ellipse color=black];
+200[label="Final boss room" shape=ellipse color=black];
+210[label="Fight final boss" shape=ellipse color=red];
+300[label="Game won" shape=ellipse color=black];
+0->10 [ label="Action 2: get vital item"];
+10->100;
+100->200 [ label="Action 1: avoid monster"];
+100->110 [ label="Action 2: fight monster"];
+110->120;
+120->200;
+200->210 [ label="Action 1: has vital item"];
+210->300 [ label="Fight"];
+}
