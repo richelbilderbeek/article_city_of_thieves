@@ -1,5 +1,7 @@
 # City of Thieves solved
 
+ * [Preregistration at Open Science Foundation](https://osf.io/u6q4k/)
+
 ## Abstract
 
 City of Thieves is a text adventure in the form of a book.
@@ -660,6 +662,10 @@ RJCB was the main writer of the manuscript.
 RJCB rewrote the book as a text adventure, 
 together with Jeroen Niemandal, Carmen IJsebaart
 and Greg Fivash.
+
+RJCB would like to thank the publisher of
+City Of Thieves, which allowed the conversion from book
+to game, as long as the game would be free, i.e. not commercial.
 
 ## Images
 
