@@ -99,7 +99,7 @@ After the character generation session, a player may pick
 one of three potions, for either of the three statistics.
 Where the health and skill potion refresh their respective value
 to the initial value, a luck potion does so, as well as add one additional 
-point. It is an open question, which potion is best to pick
+point. It is an open question, which potion is best to pick.
 This research investigates the impact of picking each of these potions (`H_2`).
 
 #### Initial inventory
