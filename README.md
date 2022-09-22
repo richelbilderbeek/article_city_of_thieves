@@ -1,6 +1,6 @@
 # City of Thieves solved
 
- * [Preregistration at Open Science Foundation](https://osf.io/u6q4k/)
+ * [Preregistration at Open Science Foundation](https://osf.io/7j5fc)
 
 ## Abstract
 
