@@ -755,3 +755,289 @@ chapters yield no reward), leaving open a dozen of routes.
 Chapter 306, however, is the only chapter that gives a reward (a merchant
 pass and 2 gold pieces) without the need for any fights. 
 All actions leading to this chapter should hence give a higher payoff.
+
+## Solution
+
+### Backbone
+
+These are squares one always visits on a winning 
+path (i.e. not skipping essential items).
+
+Chapter|Description
+-------|-------------------
+1      |At the front gate
+74     |First junction
+148    |Market
+287    |Food stall
+413    |Musician
+398    |Strong man
+52     |Weapon stall
+200    |Clairvoyant
+117    |End of market
+31     |On bridge
+329    |Nicodemus
+91     |Beggar
+124    |Before alley
+180    |Carriage
+171    |Before ship
+78     |Third junction, North Harbour street
+216    |Small boy
+317    |Outside candle-maker
+280    |Outside silversmith
+100    |Fourth junction
+
+321    |At the bottom of the ladder
+356    |Unavoidable fight: `first_rat 4 4 2`,`second_rat 5 4 2`,`third_rat 5 5 2`,
+265    |May use potion of Mind Control
+205    |Eery silence
+.      |.
+246    |Old man, Stable street
+363    |Manhole cover, Stable street
+76     |End of split
+115    |Prisoner
+222    |Before garden
+133    |Junction with Mill Street
+182    |Before tattooist
+307    |Elite guards
+201    |Outside
+431    |Random monster
+217    |Moon dogs
+259    |Before the Tower
+77     |Second floor
+310    |Third floor
+65     |Fourth floor
+163    |Get Ring of the Golden Eye
+197    |Fifth floor
+96     |Black room
+257    |Use Ring of the Golden Eye
+385    |Fight 7 7 2, 7 7 2, 7 7 2
+203    |Test Luck: Zanbar Bone attacks
+244    |Big Choice
+337    |The Right Choice
+400    |Game won
+
+### Backbone subgraph
+
+#### 1 (at the gate) -> 74 (first junction)
+
+Route                                    |Effect
+-----------------------------------------|-----------------------
+1 -> 202 -> 151 -> 29 -> 143 -> 306 -> 74|Merchant pass, +2 gold
+
+#### 74 (first junction) -> 148 (market)
+
+Route                                    |Effect
+-----------------------------------------|-----------------------
+74 -> Clock Street -> [COMPLEX] -> 148   |.
+74 -> Key Street -> [COMPLEX] -> 148     |.
+74 -> Market Street -> [COMPLEX] -> 148  |.
+
+
+#### 148 (market) -> 287 (Stalls)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+148 -> 287                               |Remove one random item or 1 gold
+
+
+#### 287 (Stalls) -> 413 (Musician)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+287 -> 413                               |Nothing
+287 -> 412 -> 413                        |-1 gold, +2 condition
+
+#### 413 (Musician) -> 398 (Strong man)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+413 -> 398                               |Nothing
+413 -> 37 -> 398                         |-3 gold, +2 luck
+
+#### 398 (Strong man) -> 52 (Weapon stall)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+398 -> 52                                |Nothing
+398 -> 37 -> 52                          |50% chance +5 gold, 50% chance -5 gold
+
+#### 52 (Weapon stall) -> 200 (Clairvoyant)
+
+AFAICS, buying the lantern is the only good idea:
+it saves a fight with the unavoidable mummy
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+52 -> 200                                |Nothing
+52 -> buy lantern -> 200                 |-3 gold, lantern (avoid mummy fight!)
+52 -> buy climbing rope -> 200           |-2 gold, climbing rope (useless)
+52 -> buy knife -> 200                   |-4 gold, throwing knife (useless, for avoidable fight)
+52 -> buy meat hook -> 200               |-2 gold, meat hook (to give to witches) (little use)
+52 -> buy iron spike -> 200              |-1 gold, iron spike (to give to witches) (little use)
+
+#### 200 (Clairvoyant) -> 117 (End of market)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+200 -> 177                               |Nothing
+
+### 117 (End of market) -> 31 (On the bridge)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+117 -> 31                                |Nothing
+
+### 31 (On the bridge) -> 329 (Nicodemus)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+31 -> 329                                |Nothing
+
+### 329 (Nicodemus) -> 91 (Beggar)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+329 -> 91                                |Nothing
+329 -> 238 -> [COMPLEX] -> 91            |Candle Street: complex!
+
+### 91 (Beggar) -> 124 (Before alley)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+91 -> 124                                |Nothing
+91 -> 332 -> 124                         |-1 gold, +1 luck
+
+### 124 (Before alley) -> 180 (Carriage)
+
+It only makes sense to fight the dog when you have a gold flower, bought at Clock Street
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+124 -> 180                               |Nothing
+124 -> 326 -> 184 -> 55 -> 180           |`fight_both` on `first_wild_dog` 4 4 2 and `second_wild_dog` 4 3 2, -gold_flower, +10 gold
+
+### 180 (Carriage) -> 171 (Before ship)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+180 -> 34 -> 171                         |Nothing
+
+### 171 (Before ship) -> 78 (Third junction, North Harbour street)
+
+You must board the ship for a vital item
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+171 -> 399 -> [COMPLEX] -> 78            |Complex
+
+### 78 (Third junction, North Harbour street) -> 216 (Small boy at Clog Street)
+
+Route                                    |Effect
+-----------------------------------------|--------------------------------
+78 -> 216                                |Nothing
+
+
+
+
+
+
+
+### Passing the gate
+
+Chapter|Option                                                                                             |Effect
+-------|---------------------------------------------------------------------------------------------------|----------------
+1      |Tell him you wish to be taken to Nicodemus?                                                        |.
+202    |Allow yourself to be taken away                                                                    |.
+151    |Ignore the old man                                                                                 |.
+29     |Feign illness and throw the iron pail against the bars of the cell to attract the guards' attention|.
+143    |Continue with your feigned illness and tell them that you think you've got the plague              |2 gold, merchant's pass
+
+### The first square
+
+#### Clock Street
+
+Chapter|Action/description       |Result
+-------|-------------------------|-------------------------------------------------------------------------
+74     |Go east down Clock Street|.
+17     |Talk to him              |Fight Madman 5 5/5, smash ball: attack strength +1, luck +1 
+17     |Continue walking east    |.
+161    |house with 4m high door  |Fight Ogre 8 9/9, two gems, 15 gold, do not wear glove
+282    |small boy                |3 gp for 1 condition
+247    |dwarf attack: test luck  |don't follow
+396    |flower shop              |but gold flower for 2 provisions
+24     |jeweller's shop          |sell 2 gems for 9 gold pieces, buy ring of fire for 8 gold pieces, buy ring of ice for 7 gold pieces
+
+#### Key Street
+
+#### Market Street
+
+### End of first split
+
+Chapter|Action/description       |Result
+-------|-------------------------|-------------------------------------------------------------------------
+196    |End of split             |.
+287    |Stall                    |1 gold piece for two condition points
+413    |Musician                 |3 gold for 1 luck
+398    |Cannonball man           |Chance 50% to get 5 gold pieces
+52     |Stall                    |Buy iron spike for 1 gold piece
+200    |Madame Star              |Ignore
+117    |Derelict house           |Ignore
+31     |Wooden bride             |Climb down
+
+### Second junction
+
+Go Candle Street
+
+#### Candle street
+
+Chapter|Action/description       |Result
+-------|-------------------------|-------------------------------------------------------------------------
+238    |doorway with six skulls  |Ignore
+139    |door to house            |Ignore: Give item for 4 condition points
+375    |dead end                 |Climb over the wall
+40     |bays' ball               |Ask to join in their game
+359    |skill test was successful|8 gold pieces, 'Potion of Mind Control', a silver flute, a piece of chalk, an eye-patch. 2 condition points
+
+#### Harbour street, before ship
+
+The ship is essential, fighting the dogs is not
+
+Chapter|Action/description       |Result
+-------|-------------------------|-------------------------------------------------------------------------
+91     |Beggar                   |1 gold coin for 1 luck
+326    |Walk down the alleyway   |First dog 4 4/4, second dog 4 3/3, can use golden flower 
+180    |Harbour Street, hide     |.
+171    |Board the ship           |use rope ladder
+87     |Ship deck                |Creep along the deck to the stairs, Open the door on the left
+271    |Cut the pouch loose      |Use luck, 6 black pearls, add 2 luck
+
+#### Harbour street, before ship
+
+Chapter|Action/description       |Result
+-------|-------------------------|-------------------------------------------------------------------------
+216    |Small boy                |Goblin thief 5 4/4, 2 gold pieces, garlic, knucklebones
+317    |Candlemaker              |1 gold piece for a colored candle
+280    |Before Silversmith       |10 gold pieces or 2 magic items for a silver arrow
+
+### Another junction
+
+Chapter|Action/description       |Result
+-------|-------------------------|-------------------------------------------------------------------------
+100    |Stable Street            |For vital item
+
+#### Tower Street
+
+Don't go in here! You will miss the hag's hair
+
+Chapter|Action/description       |Result
+-------|-------------------------|-------------------------------------------------------------------------
+127    |Man is attacked          |Help, first robber 7 8/8, second robber 8 6/6, 5 condition points
+348    |Small cloaked people     |Ignore
+76     |Barn doors               |Go in, but chainmail for ?gold coins
+115    |Hand him over            |5 gold pieces
+222    |Go into the gardens      |-1 gold piece
+370    |Risk picking flower      |if no Ring Of Fire: leaf beasts 6 6/6
+133    |Barrel boy               |1 gold piece for plums giving 1 condition point, 1 gold piece for bag of apples giving ???
+307    |Risk walking past the trolls      |
+219    |Answer 'No'                       |
+393    |Let them throw you out of the city|
