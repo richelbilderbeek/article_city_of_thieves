@@ -926,15 +926,23 @@ Route                                    |Effect
 
 You must board the ship for a vital item
 
-Route                                    |Effect
------------------------------------------|--------------------------------
-171 -> 399 -> [COMPLEX] -> 78            |Complex
+Route                                     |Effect
+------------------------------------------|--------------------------------
+171 -> 399 -> 87 -> 50 -> 271 -> 162 -> 78|Get Pearls
+
 
 ### 78 (Third junction, North Harbour street) -> 216 (Small boy at Clog Street)
 
 Route                                    |Effect
 -----------------------------------------|--------------------------------
 78 -> 216                                |Nothing
+
+  solution[216] = 317; //Walk past ?goblin thief
+  solution[317] = 280; //Walk past candle shop
+  solution[280] = 213; //Enter Ben Borryman's shop
+  solution[213] = 248; //Talk to Ben Borryman
+  solution[248] =  85; //Pay in gold
+  solution[100] = 246; //Enter Stable street
 
 
 
