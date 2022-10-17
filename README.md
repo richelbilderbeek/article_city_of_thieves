@@ -785,7 +785,7 @@ Chapter|Description
 317    |Outside candle-maker
 280    |Outside silversmith
 100    |Fourth junction
-
+.      |.
 321    |At the bottom of the ladder
 356    |Unavoidable fight: `first_rat 4 4 2`,`second_rat 5 4 2`,`third_rat 5 5 2`,
 265    |May use potion of Mind Control
